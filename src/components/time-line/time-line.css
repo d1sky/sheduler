@@ -1,0 +1,21 @@
+.time_line_hour {
+    /* height: 80px; */
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ddd;
+}
+
+.time_line_row_head {
+    width: 100px;
+    height: 80px;
+    background-color: #eee;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.hour_row_body {
+    width: 100%;
+}

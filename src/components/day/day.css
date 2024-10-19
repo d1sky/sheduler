@@ -1,0 +1,12 @@
+.day_container {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #ddd
+}
+
+.weekend {
+    background-color: #fafafa
+}
