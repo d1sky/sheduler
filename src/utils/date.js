@@ -70,3 +70,18 @@ export const getFullDayNameOfWeek = (date = new Date()) => {
             return 'Воскресенье'
     }
 }
+
+
+export const convertToInputDateValue = (date) => {
+    let convertedDate = new Date(date);
+    convertedDate.setMinutes(convertedDate.getMinutes() - convertedDate.getTimezoneOffset());
+
+    return new Date(convertedDate).toISOString().slice(0, 16)
+}
+
+export const addMintes = (date, minutes) => {
+    let convertedDate = new Date(date);
+    convertedDate.setMinutes(convertedDate.getMinutes() + minutes);
+
+    return new Date(convertedDate)
+}

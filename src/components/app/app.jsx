@@ -47,6 +47,7 @@ function App() {
       <div className="container_body">
         <Week activeDate={activeDate} />
       </div>
+      {/* <Event /> */}
     </div>
   )
 }

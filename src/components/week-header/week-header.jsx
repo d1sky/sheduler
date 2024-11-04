@@ -1,6 +1,7 @@
 import { getFirstDateOfCurrentWeek, getFullDayNameOfWeek } from '../../utils/date';
 import './week-header.css';
 
+// eslint-disable-next-line react/prop-types
 export const WeekHeader = ({ activeDate }) => {
 
     console.log(activeDate);

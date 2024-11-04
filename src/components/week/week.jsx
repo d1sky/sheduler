@@ -6,14 +6,20 @@ import './week.css'
 
 
 
+// eslint-disable-next-line react/prop-types
 export const Week = ({ activeDate }) => {
     return (
         <>
             <WeekHeader activeDate={activeDate} />
             <div className="week_container">
                 <TimeLine />
-                {[...Array(7).keys()].map(i =>
-                    <Day key={i} day={i + 1} hour={hourConvert(i)} />
+                {[...Array(7).keys()].map((it, index) =>
+                    <Day
+                        activeDate={activeDate}
+                        index={index}
+                        day={it + 1}
+                        hour={hourConvert(it)}
+                        key={index} />
                 )}
             </div>
         </>
