@@ -1,3 +1,5 @@
+import { minuteConvert } from "./time";
+
 export const getCurrentDayNameOfweek = (date) => {
     return date.getDay()
 }
@@ -73,10 +75,12 @@ export const getFullDayNameOfWeek = (date = new Date()) => {
 
 
 export const convertToInputDateValue = (date) => {
-    let convertedDate = new Date(date);
-    convertedDate.setMinutes(convertedDate.getMinutes() - convertedDate.getTimezoneOffset());
+    if (date) {
+        let convertedDate = new Date(date);
+        convertedDate.setMinutes(convertedDate.getMinutes() - convertedDate.getTimezoneOffset());
 
-    return new Date(convertedDate).toISOString().slice(0, 16)
+        return new Date(convertedDate).toISOString().slice(0, 16)
+    }
 }
 
 export const addMintes = (date, minutes) => {
@@ -84,4 +88,8 @@ export const addMintes = (date, minutes) => {
     convertedDate.setMinutes(convertedDate.getMinutes() + minutes);
 
     return new Date(convertedDate)
+}
+
+export const getTime = (date) => {
+    return new Date(date).getHours() + ':' + minuteConvert(new Date(date).getMinutes())
 }

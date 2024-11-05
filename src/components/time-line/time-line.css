@@ -14,8 +14,17 @@
     display: flex;
     justify-content: center;
     padding-top: 10px;
+
+    position: relative;
 }
 
 .hour_row_body {
     width: 100%;
+}
+
+.now {
+    position: absolute;
+    z-index: 100;
+    color: #ff726b;
+    background: linear-gradient(#eeeeee00 0%, #eeeeee 20%, #eeeeee 80%, #eeeeee00 100%);
 }

@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addEvent } from '../../services/event-list-slice';
 import { getEvent, setEvent, setIsEventShow } from '../../services/event-slice';
 import './event.css';
 
@@ -7,15 +8,8 @@ import './event.css';
 
 export const Event = () => {
     const dispatch = useDispatch();
-
     const event = useSelector(getEvent)
 
-    // const [event, setEvent] = useState({
-    //     start: new Date().toISOString().slice(0, 16),
-    //     end: new Date().toISOString().slice(0, 16),
-    //     summery: '',
-    //     description: ''
-    // })
 
     const escFunction = useCallback((event) => {
         if (event.key === "Escape") {
@@ -31,6 +25,7 @@ export const Event = () => {
     }, [escFunction]);
 
     const handleSave = () => {
+        dispatch(addEvent(event))
         dispatch(setIsEventShow(false))
     }
 

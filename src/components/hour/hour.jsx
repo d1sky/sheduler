@@ -2,8 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, getIsEventShow, setEvent, setIsEventShow } from '../../services/event-slice';
 import { addMintes, convertToInputDateValue } from '../../utils/date';
+import { EventBlock } from '../event-block/event-blocck';
 import './hour.css';
 
+let getPixelFromMinute = (minute) => {
+    return Math.floor(80 / 60 * minute)
+}
 
 // eslint-disable-next-line react/prop-types
 export const Hour = ({ index, hour, activeDate }) => {
@@ -11,6 +15,9 @@ export const Hour = ({ index, hour, activeDate }) => {
 
     const event = useSelector(getEvent)
     const isEventShow = useSelector(getIsEventShow)
+
+    let date = new Date(activeDate);
+    date.setHours(hour, 0, 0, 0);
 
     useEffect(() => {
         if (isEventShow) {
@@ -37,8 +44,12 @@ export const Hour = ({ index, hour, activeDate }) => {
     return (
         <div className="hour" key={index}>
             <div className="hour_row_body">
-                <div className="half first_half" onClick={() => handleClick({ isHalf: false })}></div>
-                <div className="half seconb_half" onClick={() => handleClick({ isHalf: true })}></div>
+                <div className="half first_half" onClick={() => handleClick({ isHalf: false })}>
+                    <EventBlock date={date} />
+                </div>
+                <div className="half seconb_half" onClick={() => handleClick({ isHalf: true })}>
+                    <EventBlock date={addMintes(date, 30)} />
+                </div>
             </div>
         </div>)
 }

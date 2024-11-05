@@ -1,8 +1,11 @@
+import { useSelector } from 'react-redux';
+import { getActiveDate } from '../../services/active-date-slice';
 import { getFirstDateOfCurrentWeek, getFullDayNameOfWeek } from '../../utils/date';
 import './week-header.css';
 
-// eslint-disable-next-line react/prop-types
-export const WeekHeader = ({ activeDate }) => {
+
+export const WeekHeader = () => {
+    const activeDate = useSelector(getActiveDate)
 
     return (
         <div className="week_header_container">

@@ -21,6 +21,7 @@
 }
 
 .half {
+    position: relative;
     height: 40px;
     width: 100%;
 }

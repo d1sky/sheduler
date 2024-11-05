@@ -2,30 +2,50 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 const initialState = {
-    entity: {
-        start: new Date().toISOString().slice(0, 16),
-        end: new Date().toISOString().slice(0, 16),
-        summery: '',
-        description: '',
-    },
-    isEventShow: false
+    entities: [],
 }
 
 export const eventSlice = createSlice({
-    name: 'event',
+    name: 'eventList',
     initialState,
     reducers: {
-        setEvent: ((state, action) => {
-            state.entity = { ...action.payload };
+        addEvent: ((state, action) => {
+            state.entities.push({ ...action.payload });
         }),
-        setIsEventShow: ((state, action) => {
-            state.isEventShow = action.payload;
+        getEventByDate: ((state, action) => {
+            state.entities.find((event) => {
+                console.log(event.start === action.payload);
+                if (event.start === action.payload) {
+
+                    return event
+                }
+            })
+        }),
+        updateEvent: ((state, action) => {
+            state.entities = state.entities.map((event) => {
+                if (event.id === action.payload.id) {
+                    return action.payload
+                }
+                return event
+            })
+        }),
+        deleteEvent: ((state, action) => {
+            state.entities = state.entities.filter((event) => {
+                return event.id !== action.payload
+            })
         }),
     }
 })
 
-export const { setEvent, setIsEventShow } = eventSlice.actions;
-export const getIsEventShow = (state) => state.event.isEventShow;
-export const getEvent = (state) => state.event.entity;
+export const { addEvent, updateEvent, deleteEvent } = eventSlice.actions;
+export const getEventList = (state) => state.event.entities;
+
+export const getEventByDate = (state, payload) => {
+    if (payload) {
+        return state.event.entities.find((event) => {
+            return event.start === payload
+        })
+    }
+}
 
 export default eventSlice.reducer

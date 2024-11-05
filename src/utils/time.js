@@ -5,3 +5,11 @@ export const hourConvert = (hour) => {
         return hour
     }
 }
+
+export const minuteConvert = (minute) => {
+    if (minute < 10) {
+        return `0${minute}`
+    } else {
+        return minute
+    }
+}

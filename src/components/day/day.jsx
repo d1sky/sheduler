@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getActiveDate } from '../../services/active-date-slice';
 import { getFirstDateOfCurrentWeek } from '../../utils/date';
 import { hourConvert } from '../../utils/time';
 import { Hour } from '../hour/hour';
@@ -7,7 +9,8 @@ import './day.css';
 
 
 // eslint-disable-next-line react/prop-types
-export const Day = ({ index, day, activeDate }) => {
+export const Day = ({ index, day }) => {
+    const activeDate = useSelector(getActiveDate)
 
     const [currentDate, setCurrentDate] = useState()
 
@@ -23,16 +26,14 @@ export const Day = ({ index, day, activeDate }) => {
 
     return (
         <div
-            className={`day_container ${(day === 6 || day === 7) ? 'weekend' : ''}`}
+            className={`day_container ${(day === 6 || day === 7) ? 'weekend' : ''} ${currentDate && currentDate.getDate() === new Date().getDate() ? 'today-active' : ''}`}
             key={index}>
             {[...Array(24).keys()].map(i =>
-
+                // eslint-disable-next-line react/jsx-key
                 <Hour
                     activeDate={currentDate}
                     index={i}
-                    day={day}
-                    hour={hourConvert(i)}
-                    key={i} />)}
+                    hour={hourConvert(i)} />)}
         </div>
     )
 }

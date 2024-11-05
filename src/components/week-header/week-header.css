@@ -5,6 +5,8 @@
 
     position: sticky;
     top: 50px;
+
+    z-index: 100;
 }
 
 .week_header_hour {
