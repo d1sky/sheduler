@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { getIsEventShow } from '../../services/event-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getIsEventShow, setIsEventShow } from '../../services/event-slice';
 import { getFirstDateOfCurrentWeek, getLastDateOfCurrentWeek } from '../../utils/date';
 import { Event } from '../event/event';
+import Modal from '../modal/modal';
 import { Week } from '../week/week';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch()
   const isEventShow = useSelector(getIsEventShow)
 
   const [activeDate, setAсtiveDate] = useState(new Date());
@@ -56,6 +58,11 @@ function App() {
 
       {isEventShow && <Event />}
 
+      {isEventShow && (
+        <Modal title="Создание события" onClose={() => dispatch(setIsEventShow(false))}>
+          <Event />
+        </Modal>
+      )}
 
     </div>
   )

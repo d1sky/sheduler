@@ -36,7 +36,7 @@
 }
 
 .event_container {
-    width: 300px;
+    width: 350px;
     height: 350px;
     display: flex;
     justify-content: center;
@@ -47,7 +47,8 @@
 }
 
 .event_form {
-    width: 100%;
+    width: 350px;
+    /* width: 100%; */
     padding: 10px;
 }
 
@@ -61,6 +62,7 @@
 .input_container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 10px 0;
 }
 
@@ -73,5 +75,5 @@
 }
 
 .footer button {
-    margin: 0 10px;
+    margin-left: 10px;
 }
