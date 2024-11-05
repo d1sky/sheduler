@@ -4,9 +4,6 @@ import './week-header.css';
 // eslint-disable-next-line react/prop-types
 export const WeekHeader = ({ activeDate }) => {
 
-    console.log(activeDate);
-
-
     return (
         <div className="week_header_container">
             <div className="week_header_hour">

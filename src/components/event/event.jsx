@@ -1,21 +1,26 @@
-import { useCallback, useEffect, useState } from 'react';
-import { addMintes, convertToInputDateValue } from '../../utils/date';
+import { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getEvent, setEvent, setIsEventShow } from '../../services/event-slice';
 import Outside from '../outside/outside';
 import './event.css';
 
 
-// eslint-disable-next-line react/prop-types
-export const Event = ({ start, setIsEventShow }) => {
-    const [event, setEvent] = useState({
-        start: new Date().toISOString().slice(0, 16),
-        end: new Date().toISOString().slice(0, 16),
-        summery: '',
-        description: ''
-    })
+
+export const Event = () => {
+    const dispatch = useDispatch();
+
+    const event = useSelector(getEvent)
+
+    // const [event, setEvent] = useState({
+    //     start: new Date().toISOString().slice(0, 16),
+    //     end: new Date().toISOString().slice(0, 16),
+    //     summery: '',
+    //     description: ''
+    // })
 
     const escFunction = useCallback((event) => {
         if (event.key === "Escape") {
-            setIsEventShow(false)
+            dispatch(setIsEventShow(false))
         }
     }, []);
 
@@ -26,29 +31,38 @@ export const Event = ({ start, setIsEventShow }) => {
         };
     }, [escFunction]);
 
-    useEffect(() => {
-        event.start = new Date(start);
-        event.start.setMinutes(event.start.getMinutes() - event.start.getTimezoneOffset());
-        setEvent({
-            ...event,
-            start: convertToInputDateValue(start),
-            end: convertToInputDateValue(addMintes(start, 30)),
-        })
-    }, [start])
+    // useEffect(() => {
+    //     let startDate = new Date(start);
+    //     startDate.setMinutes(startDate.getMinutes() - startDate.getTimezoneOffset());
+
+    //     dispatch(setEvent({
+    //         ...event,
+    //         start: convertToInputDateValue(startDate),
+    //         end: convertToInputDateValue(addMintes(startDate, 30)),
+    //     }))
+    //     // setEvent({
+    //     //     ...event,
+    //     //     start: convertToInputDateValue(start),
+    //     //     end: convertToInputDateValue(addMintes(start, 30)),
+    //     // })
+    // }, [start])
 
     const handleSave = () => {
-
-        setIsEventShow(false)
+        dispatch(setIsEventShow(false))
     }
 
+    const handleChangeForm = (e) => {
+        dispatch(setEvent({
+            ...event,
+            [e.target.name]: e.target.value
+        }))
+    }
 
     return (
         <>
-            <div className="overlay">
-
-            </div>
+            <div className="overlay"> </div>
             <Outside
-                onClick={() => setIsEventShow(false)} >
+                onClick={() => dispatch(setIsEventShow(false))} >
                 <div className="overlay-box">
                     <div className="event_container" >
                         <div className="event_form">
@@ -58,11 +72,9 @@ export const Event = ({ start, setIsEventShow }) => {
                                 <input
                                     type="text"
                                     id="summary"
-                                    name="event-summary"
-                                    value={event.summery}
-                                    onChange={(e) => {
-                                        alert(e.target.value)
-                                    }}
+                                    name="summary"
+                                    value={event?.summary}
+                                    onChange={handleChangeForm}
                                 />
                             </div>
 
@@ -70,13 +82,11 @@ export const Event = ({ start, setIsEventShow }) => {
                                 <label htmlFor="description">Descriptiom:</label>
                                 <textarea
                                     type="text"
-                                    id="summary"
-                                    name="event-summary"
-                                    value={event.summery}
+                                    id="description"
+                                    name="description"
+                                    value={event?.description}
                                     multiple
-                                    onChange={(e) => {
-                                        alert(e.target.value)
-                                    }}
+                                    onChange={handleChangeForm}
                                 />
                             </div>
 
@@ -85,11 +95,9 @@ export const Event = ({ start, setIsEventShow }) => {
                                 <input
                                     type="datetime-local"
                                     id="start"
-                                    name="event-start"
-                                    value={event.start}
-                                    onChange={(e) => {
-                                        alert(e.target.value)
-                                    }}
+                                    name="start"
+                                    value={event?.start}
+                                    onChange={handleChangeForm}
                                 // min="2018-01-01"
                                 // max="2018-12-31"
                                 />
@@ -99,22 +107,20 @@ export const Event = ({ start, setIsEventShow }) => {
                                 <input
                                     type="datetime-local"
                                     id="end"
-                                    name="event-end"
-                                    value={event.end}
-                                    onChange={(e) => {
-                                        alert(e.target.value)
-                                    }}
-                                // min="2018-01-01"
+                                    name="end"
+                                    value={event?.end}
+                                    onChange={handleChangeForm}
+                                    min={event?.start}
                                 // max="2018-12-31"
                                 />
                             </div>
 
                             <div className="footer">
                                 <button
-                                    onClick={() => setIsEventShow(false)}
+                                    onClick={() => dispatch(setIsEventShow(false))}
                                 >Cancel</button>
                                 <button
-                                    onClick={() => setIsEventShow(false)}
+                                    onClick={handleSave}
                                 >Save</button>
                             </div>
                         </div>

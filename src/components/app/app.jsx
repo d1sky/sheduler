@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getIsEventShow } from '../../services/event-slice';
 import { getFirstDateOfCurrentWeek, getLastDateOfCurrentWeek } from '../../utils/date';
+import { Event } from '../event/event';
 import { Week } from '../week/week';
 import './App.css';
 
 function App() {
+  const isEventShow = useSelector(getIsEventShow)
+
   const [activeDate, setAсtiveDate] = useState(new Date());
+
 
   const handleMinusWeek = () => {
     let date = new Date(activeDate);
@@ -47,7 +53,10 @@ function App() {
       <div className="container_body">
         <Week activeDate={activeDate} />
       </div>
-      {/* <Event /> */}
+
+      {isEventShow && <Event />}
+
+
     </div>
   )
 }
