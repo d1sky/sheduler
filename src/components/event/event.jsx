@@ -30,22 +30,6 @@ export const Event = () => {
         };
     }, [escFunction]);
 
-    // useEffect(() => {
-    //     let startDate = new Date(start);
-    //     startDate.setMinutes(startDate.getMinutes() - startDate.getTimezoneOffset());
-
-    //     dispatch(setEvent({
-    //         ...event,
-    //         start: convertToInputDateValue(startDate),
-    //         end: convertToInputDateValue(addMintes(startDate, 30)),
-    //     }))
-    //     // setEvent({
-    //     //     ...event,
-    //     //     start: convertToInputDateValue(start),
-    //     //     end: convertToInputDateValue(addMintes(start, 30)),
-    //     // })
-    // }, [start])
-
     const handleSave = () => {
         dispatch(setIsEventShow(false))
     }
@@ -58,9 +42,7 @@ export const Event = () => {
     }
 
     return (
-        // <div className="overlay-box">
         <div className="" >
-            {/* <div className="event_container" > */}
             <div className="event_form">
 
                 <div className="event_summary">
@@ -122,7 +104,6 @@ export const Event = () => {
                 </div>
             </div>
         </div>
-        // </div>
     )
 }
 
