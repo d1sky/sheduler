@@ -18,10 +18,10 @@
 
 .hour_row_body {
     width: 100%;
+    position: relative;
 }
 
 .half {
-    position: relative;
     height: 40px;
     width: 100%;
 }
@@ -32,4 +32,19 @@
 
 .half:first-child {
     border-bottom: 1px dashed #ddd;
+}
+
+.half-now {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+}
+
+.hour-line {
+    /* position: absolute; */
+    /* z-index: 100; */
+    /* color: #ff726b; */
+
+    border-bottom: 1px solid #ff726b;
+    width: 100%;
 }

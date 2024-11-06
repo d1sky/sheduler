@@ -83,7 +83,7 @@ export const convertToInputDateValue = (date) => {
     }
 }
 
-export const addMintes = (date, minutes) => {
+export const addMinutes = (date, minutes) => {
     let convertedDate = new Date(date);
     convertedDate.setMinutes(convertedDate.getMinutes() + minutes);
 
@@ -92,4 +92,29 @@ export const addMintes = (date, minutes) => {
 
 export const getTime = (date) => {
     return new Date(date).getHours() + ':' + minuteConvert(new Date(date).getMinutes())
+}
+
+export const getStartOfDate = (date) => {
+    return new Date(date).setHours(0, 0, 0, 0)
+}
+
+export const compareDates = (date1, date2) => {
+    let dt1 = new Date(date1)
+    let dt2 = new Date(date2)
+
+    dt1 = new Date(getStartOfDate(dt1)).getTime()
+    dt2 = new Date(getStartOfDate(dt2)).getTime()
+
+    return dt1 == dt2
+}
+
+
+// Разница в минутах, между двумя датами
+export const getDiffInMinutes = (date1, date2) => {
+    let dt1 = new Date(date1);
+    let dt2 = new Date(date2);
+
+    let diff = Math.abs(dt2.getMinutes() - dt1.getMinutes());
+
+    return diff;
 }

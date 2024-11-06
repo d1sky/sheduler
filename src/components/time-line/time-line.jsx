@@ -16,7 +16,7 @@ export const TimeLine = () => {
             {[...Array(24).keys()].map((hour) =>
                 <div key={hour} className="time_line_row_head">
                     {`${hourConvert(hour)}:00`}
-                    <div className="now" style={{ top: `${getPixelFromMinute(today.getMinutes()) - 20}px` }}>
+                    <div className="now" style={{ top: `${getPixelFromMinute(today.getMinutes()) - 15}px` }}>
                         {hour === today.getHours() ? `${hourConvert(today.getHours())}:${minuteConvert(today.getMinutes())}` : ''}
                     </div>
                 </div>

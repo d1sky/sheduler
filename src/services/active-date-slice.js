@@ -10,7 +10,7 @@ export const activeDateSlice = createSlice({
     initialState,
     reducers: {
         setAсtiveDate: ((state, action) => {
-            state.date = action.payload;
+            state.date = new Date(action.payload);
         }),
     }
 })

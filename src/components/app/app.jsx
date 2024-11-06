@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsEventShow, setIsEventShow } from '../../services/event-slice';
+import { clearEvent, getIsEventShow } from '../../services/event-slice';
 import { Event } from '../event/event';
 import Header from '../header/header';
 import Modal from '../modal/modal';
@@ -18,7 +18,7 @@ function App() {
       </div>
 
       {isEventShow && (
-        <Modal title="Создание события" onClose={() => dispatch(setIsEventShow(false))}>
+        <Modal title="Создание события" onClose={() => dispatch(clearEvent())}>
           <Event />
         </Modal>
       )}

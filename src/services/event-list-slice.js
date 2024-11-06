@@ -5,7 +5,7 @@ const initialState = {
     entities: [],
 }
 
-export const eventSlice = createSlice({
+export const eventListSlice = createSlice({
     name: 'eventList',
     initialState,
     reducers: {
@@ -37,7 +37,7 @@ export const eventSlice = createSlice({
     }
 })
 
-export const { addEvent, updateEvent, deleteEvent } = eventSlice.actions;
+export const { addEvent, updateEvent, deleteEvent } = eventListSlice.actions;
 export const getEventList = (state) => state.event.entities;
 
 export const getEventByDate = (state, payload) => {
@@ -48,4 +48,4 @@ export const getEventByDate = (state, payload) => {
     }
 }
 
-export default eventSlice.reducer
+export default eventListSlice.reducer

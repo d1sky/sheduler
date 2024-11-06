@@ -9,6 +9,8 @@ export const store = configureStore({
     eventList,
     activeDate
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware(),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false
+  }),
   devTools: true,
 })

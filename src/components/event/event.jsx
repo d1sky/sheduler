@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addEvent } from '../../services/event-list-slice';
-import { getEvent, setEvent, setIsEventShow } from '../../services/event-slice';
+import { clearEvent, getEvent, setEvent } from '../../services/event-slice';
 import './event.css';
 
 
@@ -13,7 +13,7 @@ export const Event = () => {
 
     const escFunction = useCallback((event) => {
         if (event.key === "Escape") {
-            dispatch(setIsEventShow(false))
+            dispatch(clearEvent())
         }
     }, []);
 
@@ -26,7 +26,7 @@ export const Event = () => {
 
     const handleSave = () => {
         dispatch(addEvent(event))
-        dispatch(setIsEventShow(false))
+        dispatch(clearEvent())
     }
 
     const handleChangeForm = (e) => {
@@ -91,7 +91,7 @@ export const Event = () => {
 
                 <div className="footer">
                     <button
-                        onClick={() => dispatch(setIsEventShow(false))}
+                        onClick={() => dispatch(clearEvent())}
                     >Cancel</button>
                     <button
                         onClick={handleSave}
