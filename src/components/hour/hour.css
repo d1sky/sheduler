@@ -18,6 +18,10 @@
 
 .hour_row_body {
     width: 100%;
+}
+
+.hour_now-line {
+    width: 100%;
     position: relative;
 }
 
@@ -28,11 +32,14 @@
     /* margin: 2px; */
 }
 
-.half:hover {
-    /* background-color: #4f7df4; */
+/* .half:hover {
     border: 1px dashed #4f7df4;
     border-radius: 5px;
-    /* margin: 2px; */
+} */
+
+.half-active {
+    border: 1px dashed #4f7df4;
+    border-radius: 5px;
 }
 
 .half:first-child {
@@ -46,10 +53,6 @@
 }
 
 .hour-line {
-    /* position: absolute; */
-    /* z-index: 100; */
-    /* color: #ff726b; */
-
     border-bottom: 1px solid #ff726b;
     width: 100%;
 }

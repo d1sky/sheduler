@@ -45,8 +45,6 @@ export const EventBlock = ({ date, half = false }) => {
     }));
 
 
-
-
     let handleEventClick = (e) => {
         e.stopPropagation();
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, getIsEventShow, setEvent, setIsEventShow } from '../../services/event-slice';
 import { addMinutes, compareDates, convertToInputDateValue } from '../../utils/date';
-import { EventBlock } from '../event-block/event-blocck';
+import { EventBlock } from '../event-block/event-block';
 import './hour.css';
 
 let getPixelFromMinute = (minute) => {
@@ -16,15 +16,7 @@ export const Hour = ({ index, hour, activeDate }) => {
     const event = useSelector(getEvent)
     const isEventShow = useSelector(getIsEventShow)
 
-    // useEffect(() => {
-    //     if (activeDate) {
-    //         let date = getFirstDateOfCurrentWeek(activeDate);
-    //         date.setDate(date.getDate() + index)
 
-    //         setCurrentDate(date)
-    //     }
-
-    // }, [activeDate])
 
     let today = new Date();
 
@@ -56,10 +48,14 @@ export const Hour = ({ index, hour, activeDate }) => {
     return (
         <div className="hour" key={index}>
             <div className="hour_row_body">
-                <div className="half-now" style={{ top: `${getPixelFromMinute(today.getMinutes())}px` }}>
-                    {(compareDates(today, activeDate) && (hour == today.getHours())) ? <div className="hour-line"></div> : ''}
+                <div className="hour_now-line">
+                    <div className="half-now" style={{ top: `${getPixelFromMinute(today.getMinutes())}px` }}>
+                        {(compareDates(today, activeDate) && (hour == today.getHours())) ? <div className="hour-line"></div> : ''}
+                    </div>
                 </div>
-                <div className="half first_half" onClick={() => handleClick({ isHalf: false })}>
+                <div className="half first_half"
+                    // onMouseEnter={ }
+                    onClick={() => handleClick({ isHalf: false })}>
                     <EventBlock date={date} />
                 </div>
                 <div className="half seconb_half" onClick={() => handleClick({ isHalf: true })}>

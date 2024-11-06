@@ -57,7 +57,7 @@ const Modal = (props) => {
                     >
                         <img src={CloseIcon} alt="close icon" />
                     </button>
-                    <p className={Styles.title}>{title}</p>
+                    {/* <p className={Styles.title}>{title}</p> */}
                     {children}
                 </div>
             </div>

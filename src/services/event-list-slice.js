@@ -10,7 +10,7 @@ export const eventListSlice = createSlice({
     initialState,
     reducers: {
         addEvent: ((state, action) => {
-            state.entities.push({ ...action.payload });
+            state.entities.push({ ...action.payload, id: new Date().getTime() });
         }),
         getEventByDate: ((state, action) => {
             state.entities.find((event) => {
@@ -31,7 +31,7 @@ export const eventListSlice = createSlice({
         }),
         deleteEvent: ((state, action) => {
             state.entities = state.entities.filter((event) => {
-                return event.id !== action.payload
+                return event.id !== action.payload.id
             })
         }),
     }

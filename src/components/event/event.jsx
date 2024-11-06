@@ -1,6 +1,6 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEvent } from '../../services/event-list-slice';
+import { addEvent, updateEvent } from '../../services/event-list-slice';
 import { clearEvent, getEvent, setEvent } from '../../services/event-slice';
 import './event.css';
 
@@ -10,17 +10,18 @@ export const Event = () => {
     const dispatch = useDispatch();
     const event = useSelector(getEvent)
 
+    const summaryRef = useRef(null);
+
 
     const keyDownFunction = useCallback((e) => {
         if (e.key === "Escape") {
+            summaryRef.current.blur()
             dispatch(clearEvent())
         }
 
         if (e.key === "Enter") {
-            console.log(event);
-
-            dispatch(addEvent(event))
-            dispatch(clearEvent())
+            summaryRef.current.blur()
+            handleSave()
         }
     }, [event]);
 
@@ -34,7 +35,15 @@ export const Event = () => {
 
 
     const handleSave = () => {
-        dispatch(addEvent(event))
+        if (checkDate()) {
+            return
+        }
+
+        if (event.id) {
+            dispatch(updateEvent(event))
+        } else {
+            dispatch(addEvent(event))
+        }
         dispatch(clearEvent())
     }
 
@@ -45,23 +54,29 @@ export const Event = () => {
         }))
     }
 
+    const checkDate = () => {
+        return (event?.start >= event?.end && event?.end <= event?.start)
+    }
+
     return (
         <div className="" >
             <div className="event_form">
 
                 <div className="event_summary">
-                    <label htmlFor="summary">Summary:</label>
+                    <label htmlFor="summary">Название:</label>
                     <input
+                        autoFocus
                         type="text"
                         id="summary"
                         name="summary"
                         value={event?.summary}
                         onChange={handleChangeForm}
+                        ref={summaryRef}
                     />
                 </div>
 
                 <div className="event_description">
-                    <label htmlFor="description">Descriptiom:</label>
+                    <label htmlFor="description">Описание:</label>
                     <textarea
                         type="text"
                         id="description"
@@ -73,20 +88,18 @@ export const Event = () => {
                 </div>
 
                 <div className="input_container event_date_start">
-                    <label htmlFor="start">Start:</label>
+                    <label htmlFor="start">Начало:</label>
                     <input
                         type="datetime-local"
                         id="start"
                         name="start"
                         value={event?.start}
                         onChange={handleChangeForm}
-                    // min="2018-01-01"
-                    // max="2018-12-31"
                     />
                 </div>
 
                 <div className="input_container event_date_end">
-                    <label htmlFor="start">End:</label>
+                    <label htmlFor="start">Окончание:</label>
                     <input
                         type="datetime-local"
                         id="end"
@@ -94,17 +107,23 @@ export const Event = () => {
                         value={event?.end}
                         onChange={handleChangeForm}
                         min={event?.start}
-                    // max="2018-12-31"
                     />
                 </div>
 
+                {checkDate() &&
+                    <div className="event-error">
+                        Дата начала не может быть больше чем дата окончания!
+                    </div>
+                }
+
                 <div className="footer">
                     <button
-                        onClick={() => dispatch(clearEvent())}
-                    >Cancel</button>
+                        onClick={() => dispatch(clearEvent())}>
+                        Отмена</button>
                     <button
-                        onClick={handleSave}
-                    >Save</button>
+                        // disabled={checkDate()}
+                        onClick={handleSave}>
+                        Сохранить</button>
                 </div>
             </div>
         </div>
