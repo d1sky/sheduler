@@ -115,5 +115,5 @@ export const getDiffInMinutes = (date1, date2) => {
 
     let diff = Math.abs(dt2.getTime() - dt1.getTime()) / 1000 / 60;
 
-    return diff;
+    return diff - 1;
 }

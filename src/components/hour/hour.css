@@ -18,6 +18,7 @@
 
 .hour_row_body {
     width: 100%;
+    position: relative;
 }
 
 .hour_now-line {
@@ -29,6 +30,7 @@
     height: 40px;
     width: 100%;
     border: 1px dashed #4f7ef400;
+    position: absolute;
     /* margin: 2px; */
 }
 
@@ -42,8 +44,17 @@
     border-radius: 5px;
 }
 
-.half:first-child {
+.half_first {
+    position: absolute;
+    height: 40px;
     border-bottom: 1px dashed #ddd;
+    top: 0;
+}
+
+.half_second {
+    position: absolute;
+    height: 40px;
+    top: 40px;
 }
 
 .half-now {
