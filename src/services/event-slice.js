@@ -16,6 +16,8 @@ export const eventSlice = createSlice({
     initialState,
     reducers: {
         setEvent: ((state, action) => {
+            console.log(action.payload);
+
             state.entity = { ...action.payload };
         }),
         clearEvent: ((state) => {

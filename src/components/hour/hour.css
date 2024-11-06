@@ -24,10 +24,15 @@
 .half {
     height: 40px;
     width: 100%;
+    border: 1px dashed #4f7ef400;
+    /* margin: 2px; */
 }
 
 .half:hover {
-    background-color: #4f7df4;
+    /* background-color: #4f7df4; */
+    border: 1px dashed #4f7df4;
+    border-radius: 5px;
+    /* margin: 2px; */
 }
 
 .half:first-child {

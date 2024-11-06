@@ -108,13 +108,12 @@ export const compareDates = (date1, date2) => {
     return dt1 == dt2
 }
 
-
 // Разница в минутах, между двумя датами
 export const getDiffInMinutes = (date1, date2) => {
     let dt1 = new Date(date1);
     let dt2 = new Date(date2);
 
-    let diff = Math.abs(dt2.getMinutes() - dt1.getMinutes());
+    let diff = Math.abs(dt2.getTime() - dt1.getTime()) / 1000 / 60;
 
     return diff;
 }

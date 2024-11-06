@@ -11,18 +11,27 @@ export const Event = () => {
     const event = useSelector(getEvent)
 
 
-    const escFunction = useCallback((event) => {
-        if (event.key === "Escape") {
+    const keyDownFunction = useCallback((e) => {
+        if (e.key === "Escape") {
             dispatch(clearEvent())
         }
-    }, []);
+
+        if (e.key === "Enter") {
+            console.log(event);
+
+            dispatch(addEvent(event))
+            dispatch(clearEvent())
+        }
+    }, [event]);
+
 
     useEffect(() => {
-        document.addEventListener("keydown", escFunction, false);
+        document.addEventListener("keydown", keyDownFunction, false);
         return () => {
-            document.removeEventListener("keydown", escFunction, false);
+            document.removeEventListener("keydown", keyDownFunction, false);
         };
-    }, [escFunction]);
+    }, [keyDownFunction]);
+
 
     const handleSave = () => {
         dispatch(addEvent(event))
