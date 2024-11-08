@@ -44,7 +44,7 @@ export const eventListSlice = createSlice({
         }),
         deleteEvent: ((state, action) => {
             state.entities = state.entities.filter((event) => {
-                return event.id !== action.payload.id
+                return event.id !== action.payload
             })
         }),
     }

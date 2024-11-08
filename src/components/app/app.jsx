@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { clearEvent, getIsEventShow } from '../../services/event-slice';
-import { Event } from '../event/event';
+import { EventForm } from '../event-form/event-form';
 import Header from '../header/header';
 import Modal from '../modal/modal';
 import { Week } from '../week/week';
@@ -19,7 +19,7 @@ function App() {
 
       {isEventShow && (
         <Modal title="Создание события" onClose={() => dispatch(clearEvent())}>
-          <Event />
+          <EventForm />
         </Modal>
       )}
 

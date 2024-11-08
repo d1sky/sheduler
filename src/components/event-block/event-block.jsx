@@ -46,7 +46,34 @@ export const EventBlock = ({ date, event, hourElement }) => {
     let eventWidth = hourElement?.current?.offsetWidth - 15
 
     if (eventList.length > 1) {
-        eventWidth = hourElement?.current?.offsetWidth / eventList.length
+        let column = 1
+        let arr = eventList.slice()
+
+        arr = arr.map((ev, index) => ({ ...ev, index }))
+
+        let currentIndex = arr.find(it => it.id == event.id)?.index
+
+        // if (currentIndex === 0) {
+        arr.filter((ev, index) => index > 0).forEach((ev, index) => {
+            let overlay = 0
+
+            arr.filter((ev, i) => i > index).forEach((el, indx) => {
+                if (dateRangeOverlaps(ev, el)) {
+                    overlay++
+                }
+            })
+
+            if (overlay > column) {
+                column = overlay
+            }
+        })
+        // }
+
+        eventWidth = hourElement?.current?.offsetWidth / (column + 1)
+
+        // if (!eventWidth.eventWidth) {
+        //     dispatch(updateEvent({ ...event, eventWidth }))
+        // }
     }
 
     let handleEventClick = (e) => {
@@ -56,15 +83,25 @@ export const EventBlock = ({ date, event, hourElement }) => {
         dispatch(setIsEventShow(true))
     }
 
+    let calcLeftPosition = (event) => {
+        return eventList.map((ev, index) => ({ ...ev, index })).find(it => it.id == event.id)?.index * eventWidth
+    }
+
+    // let get
+
     if (event) {
         return (
             <div className="event-block" style={{
                 height: eventHeight(event?.start, event?.end),
                 top: eventTop({ start: event?.start }),
-                left: eventList.map((ev, index) => ({ ...ev, index })).find(it => it.id == event.id)?.index * eventWidth,
+                left: calcLeftPosition(event),
+                //  eventList.map((ev, index) => ({ ...ev, index })).find(it => it.id == event.id)?.index * eventWidth,
                 width: eventWidth
             }} >
-                <div className="event-block-container" style={{ height: eventHeight(event?.start, event?.end) }} onClick={handleEventClick}  >
+                <div
+                    className="event-block-container"
+                    style={{ height: eventHeight(event?.start, event?.end) }}
+                    onClick={handleEventClick}  >
                     <div className="event-time">
                         {getTime(event?.start)}
                     </div>
@@ -75,6 +112,5 @@ export const EventBlock = ({ date, event, hourElement }) => {
             </div >
         )
     }
-
 }
 

@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, getIsEventShow, setEvent, setIsEventShow } from '../../services/event-slice';
-import { addMinutes, compareDates, convertToInputDateValue } from '../../utils/date';
+import { addMinutes, convertToInputDateValue } from '../../utils/date';
 import { EventBlock } from '../event-block/event-block';
 import './hour.css';
 
@@ -18,6 +18,17 @@ export const Hour = ({ index, hour, activeDate }) => {
     const event = useSelector(getEvent)
     const isEventShow = useSelector(getIsEventShow)
 
+    let [nowMinutes, setNowMinutes] = useState(new Date().getMinutes());
+
+    let today = new Date();
+
+    const startOfNextMinute = new Date().setSeconds(0, 0) + 60000;
+    const timeToNextMinute = startOfNextMinute - today;
+
+    setTimeout(() => {
+        setInterval(setNowMinutes(new Date().getMinutes()), 60000);
+    }, timeToNextMinute);
+
     let eventList = useSelector(state => state.eventList.entities.filter(event => {
         let date = new Date(activeDate);
         date.setHours(hour, 0, 0, 0);
@@ -27,8 +38,6 @@ export const Hour = ({ index, hour, activeDate }) => {
 
         return new Date(event.start).getTime() >= startPeriod.getTime() && new Date(event.start).getTime() < endPeriod.getTime()
     }));
-
-    let today = new Date();
 
     let date = new Date(activeDate);
     date.setHours(hour, 0, 0, 0);
@@ -70,8 +79,9 @@ export const Hour = ({ index, hour, activeDate }) => {
 
 
                 <div className="hour_now-line">
-                    <div className="half-now" style={{ top: `${getPixelFromMinute(today.getMinutes())}px` }}>
-                        {(compareDates(today, activeDate) && (hour == today.getHours())) ? <div className="hour-line"></div> : ''}
+                    <div className="half-now" style={{ top: `${getPixelFromMinute(nowMinutes)}px` }}>
+                        {/* {(compareDates(today, activeDate) && (hour == today.getHours())) ? <div className="hour-line"></div> : ''} */}
+                        {(hour == today.getHours()) ? <div className="hour-line"></div> : ''}
                     </div>
                 </div>
 

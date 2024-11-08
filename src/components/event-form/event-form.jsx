@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEvent, updateEvent } from '../../services/event-list-slice';
+import { addEvent, deleteEvent, updateEvent } from '../../services/event-list-slice';
 import { clearEvent, getEvent, setEvent } from '../../services/event-slice';
-import './event.css';
+import './event-form.css';
 
 
 
-export const Event = () => {
+export const EventForm = () => {
     const dispatch = useDispatch();
     const event = useSelector(getEvent)
 
@@ -43,6 +43,13 @@ export const Event = () => {
             dispatch(updateEvent(event))
         } else {
             dispatch(addEvent(event))
+        }
+        dispatch(clearEvent())
+    }
+
+    const handleDelete = () => {
+        if (event.id) {
+            dispatch(deleteEvent(event?.id))
         }
         dispatch(clearEvent())
     }
@@ -117,13 +124,21 @@ export const Event = () => {
                 }
 
                 <div className="footer">
+                    {event?.id &&
+                        <button
+                            onClick={handleDelete}>
+                            Удалить
+                        </button>
+                    }
                     <button
                         onClick={() => dispatch(clearEvent())}>
-                        Отмена</button>
+                        Отмена
+                    </button>
                     <button
                         // disabled={checkDate()}
                         onClick={handleSave}>
-                        Сохранить</button>
+                        Сохранить
+                    </button>
                 </div>
             </div>
         </div>
