@@ -31,6 +31,7 @@ export const Day = ({ index, day }) => {
             {[...Array(24).keys()].map(i =>
                 // eslint-disable-next-line react/jsx-key
                 <Hour
+                    day={day}
                     activeDate={currentDate}
                     index={i}
                     hour={hourConvert(i)} />)}

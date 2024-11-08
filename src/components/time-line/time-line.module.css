@@ -1,25 +1,34 @@
-.time_line_hour {
-    /* height: 80px; */
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid #ddd;
+.hoursContainer {
+    display: block;
 }
 
-.time_line_row_head {
+.hourBlock {
     width: 100px;
     height: 80px;
-    background-color: #eee;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+
+    /* background-color: #eee; */
+
     display: flex;
     justify-content: center;
     padding-top: 10px;
 
     position: relative;
+    border-right: 1px solid #ddd;
 }
 
+/* 
 .hour_row_body {
     width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+} */
+.time {
+    height: 30px;
+    top: -15px;
+    position: absolute;
+
+    color: #505050;
 }
 
 .now {

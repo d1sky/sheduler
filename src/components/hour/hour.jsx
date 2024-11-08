@@ -10,7 +10,7 @@ let getPixelFromMinute = (minute) => {
 }
 
 // eslint-disable-next-line react/prop-types
-export const Hour = ({ index, hour, activeDate }) => {
+export const Hour = ({ index, day, hour, activeDate }) => {
     const dispatch = useDispatch();
 
     let hourElement = useRef(null);
@@ -65,7 +65,7 @@ export const Hour = ({ index, hour, activeDate }) => {
     }
 
     return (
-        <div className="hour" key={index} ref={hourElement}>
+        <div className={`hour  ${(day === 6 || day === 7) ? 'weekend' : ''} ${activeDate && activeDate.getDate() === new Date().getDate() ? 'today-active' : ''}`} key={index} ref={hourElement}>
             <div className="hour_row_body">
 
                 <div className="half half_first"

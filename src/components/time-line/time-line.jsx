@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { hourConvert, minuteConvert } from '../../utils/time';
-import './time-line.css';
+import styles from './time-line.module.css';
 
 
 
@@ -21,12 +21,15 @@ export const TimeLine = () => {
     }
 
     return (
-        <div className="time_line_hour" >
+        <div className={styles.hoursContainer} >
             {[...Array(24).keys()].map((hour) =>
-                <div key={hour} className="time_line_row_head">
-                    {`${hourConvert(hour)}:00`}
+                <div key={hour} className={styles.hourBlock}>
+                    <div className={styles.time}>
+
+                        {hour != '0' && `${hourConvert(hour)}:00`}
+                    </div>
                     {hour === today.getHours() &&
-                        <div className="now" style={{ top: `${getPixelFromMinute(nowMinutes) - 15}px` }}>
+                        <div className={styles.now} style={{ top: `${getPixelFromMinute(nowMinutes) - 15}px` }}>
                             {`${hourConvert(today.getHours())}:${minuteConvert(today.getMinutes())}`}
                         </div>
                     }
