@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, getIsEventShow, setEvent, setIsEventShow } from '../../services/event-slice';
 import { addMinutes, convertToInputDateValue } from '../../utils/date';
 import { EventBlock } from '../event-block/event-block';
-import './hour.css';
+import styles from './hour.module.css';
 
 let getPixelFromMinute = (minute) => {
     return Math.floor(80 / 60 * minute)
@@ -12,6 +12,12 @@ let getPixelFromMinute = (minute) => {
 // eslint-disable-next-line react/prop-types
 export const Hour = ({ index, day, hour, activeDate }) => {
     const dispatch = useDispatch();
+
+    let eventList = useSelector(state => state.eventList.entities);
+
+    const getHourEventList = () => eventList.filter(event => {
+        return new Date(event.start).getTime() >= startPeriod.getTime() && new Date(event.start).getTime() < endPeriod.getTime()
+    })
 
     let hourElement = useRef(null);
 
@@ -29,18 +35,13 @@ export const Hour = ({ index, day, hour, activeDate }) => {
         setInterval(setNowMinutes(new Date().getMinutes()), 60000);
     }, timeToNextMinute);
 
-    let eventList = useSelector(state => state.eventList.entities.filter(event => {
-        let date = new Date(activeDate);
-        date.setHours(hour, 0, 0, 0);
-
-        let startPeriod = new Date(date);
-        let endPeriod = addMinutes(date, 60);
-
-        return new Date(event.start).getTime() >= startPeriod.getTime() && new Date(event.start).getTime() < endPeriod.getTime()
-    }));
-
     let date = new Date(activeDate);
     date.setHours(hour, 0, 0, 0);
+
+    let startPeriod = new Date(date);
+    let endPeriod = addMinutes(date, 60);
+
+
 
     useEffect(() => {
         if (isEventShow) {
@@ -64,30 +65,31 @@ export const Hour = ({ index, day, hour, activeDate }) => {
         dispatch(setIsEventShow(true))
     }
 
+    let className = `${styles.hour}  ${(day === 6 || day === 7) && styles.weekend} ${activeDate && activeDate.getDate() === new Date().getDate() && styles.today}`
+
     return (
-        <div className={`hour  ${(day === 6 || day === 7) ? 'weekend' : ''} ${activeDate && activeDate.getDate() === new Date().getDate() ? 'today-active' : ''}`} key={index} ref={hourElement}>
-            <div className="hour_row_body">
+        <div
+            className={className}
+            key={index}
+            ref={hourElement}>
+            <div className={styles.hour_block}>
 
-                <div className="half half_first"
-                    onClick={() => handleClick({ isHalf: false })}>
-                    {/* <EventBlock date={date} /> */}
-                </div>
+                <div className={`${styles.half} ${styles.half_first}`} onClick={() => handleClick({ isHalf: false })} />
 
-                <div className="half half_second" onClick={() => handleClick({ isHalf: true })}>
-                    {/* <EventBlock date={addMinutes(date, 30)} half={true} /> */}
-                </div>
+                <div className={`${styles.half} ${styles.half_second}`} onClick={() => handleClick({ isHalf: true })} />
 
-
-                <div className="hour_now-line">
-                    <div className="half-now" style={{ top: `${getPixelFromMinute(nowMinutes)}px` }}>
-                        {/* {(compareDates(today, activeDate) && (hour == today.getHours())) ? <div className="hour-line"></div> : ''} */}
-                        {(hour == today.getHours()) ? <div className="hour-line"></div> : ''}
+                <div
+                    className={styles.line_container}>
+                    <div
+                        className={styles.now_line}
+                        style={{ top: `${getPixelFromMinute(nowMinutes)}px` }}>
+                        {(hour == today.getHours()) ? <div className={styles.line}></div> : ''}
                     </div>
                 </div>
 
-                {eventList.map(event => <EventBlock date={date} event={event} hourElement={hourElement} />)}
+                {getHourEventList().map(event => <EventBlock date={date} event={event} hourElement={hourElement} />)}
 
             </div>
-        </div>)
+        </div >)
 }
 

@@ -5,7 +5,23 @@
     border-bottom: 1px solid #ddd;
 }
 
-.hour_row_head {
+.weekend {
+    background-color: #fafafa
+}
+
+.today {
+    background-color: #eff7f6
+}
+
+.hour_block {
+    width: 100%;
+    position: relative;
+
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+/* .hour_row_head {
     width: 100px;
     height: 80px;
     display: flex;
@@ -14,20 +30,7 @@
     background-color: #eee;
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
-}
-
-.hour_row_body {
-    width: 100%;
-    position: relative;
-
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-}
-
-.hour_now-line {
-    width: 100%;
-    position: relative;
-}
+} */
 
 .half {
     height: 40px;
@@ -42,10 +45,10 @@
     border-radius: 5px;
 } */
 
-.half-active {
+/* .half-active {
     border: 1px dashed #4f7df4;
     border-radius: 5px;
-}
+} */
 
 .half_first {
     position: absolute;
@@ -60,13 +63,29 @@
     top: 40px;
 }
 
-.half-now {
+/* .half-now {
     position: absolute;
     z-index: 100;
     width: 100%;
+} */
+
+/* now line */
+
+.line_container {
+    width: 100%;
+    position: relative;
+    pointer-events: none;
 }
 
-.hour-line {
+.now_line {
+    height: 40px;
+    width: 100%;
+    border: 1px dashed #4f7ef400;
+    position: absolute;
+    /* margin: 2px; */
+}
+
+.line {
     border-bottom: 1px solid #ff726b;
     width: 100%;
 }

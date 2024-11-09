@@ -13,8 +13,7 @@ export const Week = () => {
             <div className="week_container">
                 <TimeLine />
                 {[...Array(7).keys()].map((it, index) =>
-                    // eslint-disable-next-line react/jsx-key
-                    <Day index={index} day={it + 1} />
+                    <Day index={index} day={it + 1} key={index} />
                 )}
             </div>
         </>

@@ -28,9 +28,9 @@ export const Day = ({ index, day }) => {
         <div
             className={`day_container ${(day === 6 || day === 7) ? 'weekend' : ''} ${currentDate && currentDate.getDate() === new Date().getDate() ? 'today-active' : ''}`}
             key={index}>
-            {[...Array(24).keys()].map(i =>
-                // eslint-disable-next-line react/jsx-key
+            {[...Array(24).keys()].map((i, index) =>
                 <Hour
+                    key={index}
                     day={day}
                     activeDate={currentDate}
                     index={i}
