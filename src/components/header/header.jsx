@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getActiveDate, setAсtiveDate } from '../../services/active-date-slice';
 import { getFirstDateOfCurrentWeek, getLastDateOfCurrentWeek } from '../../utils/date';
-import './header.css';
+import styles from './header.module.css';
 
 function Header() {
   const dispatch = useDispatch();
@@ -22,26 +22,34 @@ function Header() {
   }
 
   return (
-    <div className="container_header">
-      <div className="interval">
-        <div className="arrows">
-          <ul className="btn-group">
-            <li onClick={() => handleMinusWeek()}>&lt;</li>
-            <li onClick={() => handlePlusWeek()}>&gt;</li>
+    <div className={styles.container}>
+      <div className={styles.interval} >
+        <div className={styles.arrows}>
+          <ul className={styles.arrows_btn_group}>
+            <li className={styles.arrows_btn_group_element} onClick={() => handleMinusWeek()}>&lt;</li>
+            <li className={styles.arrows_btn_group_element} onClick={() => handlePlusWeek()}>&gt;</li>
           </ul>
         </div>
-        <div className="today active" onClick={() => dispatch(setAсtiveDate(new Date()))}>Сегодня</div>
+        <div
+          className={`${styles.today} ${styles.active}`}
+          onClick={() => dispatch(setAсtiveDate(new Date()))}>
+          Сегодня
+        </div>
       </div>
-      <div className="current_period">
+      <div
+        className={styles.active_interval}
+      >
         {`${getFirstDateOfCurrentWeek(activeDate).getDate()} - ${getLastDateOfCurrentWeek(activeDate)}`}
       </div>
-      <div className="period">
-        <ul className="btn-group">
-          <li >День</li>
-          <li className="active">Неделя</li>
-          <li>Месяц</li>
+
+      <div className={styles.period}>
+        <ul className={styles.period_btn_group} >
+          <li className={styles.period_btn_group_element}>День</li>
+          <li className={`${styles.period_btn_group_element} ${styles.active}`}>Неделя</li>
+          <li className={styles.period_btn_group_element}>Месяц</li>
         </ul>
       </div>
+
     </div>
   )
 }

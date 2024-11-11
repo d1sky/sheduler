@@ -1,4 +1,4 @@
-.container_header {
+.container {
   width: 100%;
   height: 50px;
   padding: 0 20px;
@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: space-between;
 
-  position: sticky;
+  position: fixed;
   top: 0;
 
   z-index: 100;
@@ -19,7 +19,6 @@
   display: flex;
   align-items: center;
   justify-content: start;
-  /* justify-content: space-between; */
 }
 
 .arrows {
@@ -28,7 +27,7 @@
   justify-content: start;
 }
 
-.arrows ul {
+.arrows_btn_group {
   display: flex;
   justify-content: start;
   padding: 0;
@@ -37,10 +36,12 @@
   margin-right: 10px;
 
   list-style: none;
+  cursor: pointer;
+
 }
 
-.arrows ul li {
-  /* padding: 0 10px; */
+.arrows_btn_group_element {
+  padding: 5px 24px;
   list-style-type: none;
   border: 1px solid #bbb;
   font-size: 15px;
@@ -51,67 +52,56 @@
   border: 1px solid #bbb;
   padding: 4px 10px;
   border-radius: 3px;
-
   cursor: pointer;
+  margin-left: 10px;
 }
 
-.period ul {
+.active_interval {
+  font-size: 20px;
+}
+
+.period_btn_group {
   display: flex;
   justify-content: center;
   align-items: center;
   list-style: none;
 }
 
-.period ul li {
-  /* margin-left: 10px; */
-  /* margin-right: 10px; */
+.period_btn_group_element {
   list-style-type: none;
 }
 
-.btn-group li {
-  /* Зеленый фон */
-  /* background-color: #4CAF50; */
-  /* Зеленая граница */
+.period_btn_group_element {
   border: 1px solid #bbb;
-
-  /* padding: 20px 0; */
-
   padding: 5px 24px;
-  /* Немного отступа */
-
-  /* Немного отступов */
-  /* padding: 15px 10px; */
-  /* Указатель/значок руки */
   cursor: pointer;
-  /* Плавают кнопки бок о бок */
   float: left;
   border-radius: 3px;
-
 }
 
-.btn-group li:not(:last-child) {
+.period_btn_group_element:not(:last-child) {
   /* Предотвращение двойных границ */
   border-right: none;
   border-radius: 0;
 }
 
-.btn-group li:first-child {
+.period_btn_group_element:first-child {
   border-radius: 3px 0 0 3px;
 }
 
-.btn-group li:last-child {
+.period_btn_group_element:last-child {
   border-radius: 0 3px 3px 0;
 }
 
 /* Очистить поплавки (clearfix) взлом */
-.btn-group:after {
+.period_btn_group_element:after {
   content: "";
   clear: both;
   display: table;
 }
 
 /* Добавить цвет фона при наведении курсора */
-.btn-group li:hover {
+.period_btn_group_element:hover {
   background-color: #eee;
 }
 
