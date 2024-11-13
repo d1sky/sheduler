@@ -11,7 +11,7 @@ function App() {
   const isEventShow = useSelector(getIsEventShow)
 
   return (
-    <div className="container">
+    <div className={``}>
       <Header />
 
       <div className="container_body">

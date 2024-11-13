@@ -3,7 +3,6 @@ import { hourConvert, minuteConvert } from '../../utils/time';
 import styles from './time-line.module.css';
 
 
-
 export const TimeLine = () => {
     let [nowMinutes, setNowMinutes] = useState(new Date().getMinutes());
 
@@ -21,11 +20,11 @@ export const TimeLine = () => {
     }
 
     return (
-        <div className={styles.hoursContainer} >
+        <div className={styles.hours_сontainer} >
             {[...Array(24).keys()].map((hour) =>
-                <div key={hour} className={styles.hourBlock}>
+                <div key={hour} className={styles.hour_block}>
                     <div className={styles.time}>
-
+                        {/* {`${hourConvert(hour)}:00`} */}
                         {hour != '0' && `${hourConvert(hour)}:00`}
                     </div>
                     {hour === today.getHours() &&

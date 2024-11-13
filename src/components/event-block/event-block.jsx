@@ -15,10 +15,11 @@ function dateRangeOverlaps(a, b) {
 
 let getPixelFromMinute = (minute) => {
     if (minute == 0) {
-        return 1
+        return 0
     }
 
-    return Math.floor(4 / 3 * minute) - 1
+    return Math.floor(4 / 3 * minute)
+    // return Math.floor(4 / 3 * minute) - 1
 }
 
 
@@ -91,13 +92,14 @@ export const EventBlock = ({ date, event, hourElement }) => {
 
     if (event) {
         return (
-            <div className="event-block" style={{
-                height: eventHeight(event?.start, event?.end),
-                top: eventTop({ start: event?.start }),
-                left: calcLeftPosition(event),
-                //  eventList.map((ev, index) => ({ ...ev, index })).find(it => it.id == event.id)?.index * eventWidth,
-                width: eventWidth
-            }} >
+            <div
+                className="event-block"
+                style={{
+                    height: eventHeight(event?.start, event?.end),
+                    top: eventTop({ start: event?.start }),
+                    left: calcLeftPosition(event),
+                    width: eventWidth
+                }} >
                 <div
                     className="event-block-container"
                     style={{ height: eventHeight(event?.start, event?.end) }}

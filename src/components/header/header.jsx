@@ -22,19 +22,20 @@ function Header() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.header}>
       <div className={styles.interval} >
         <div className={styles.arrows}>
-          <ul className={styles.arrows_btn_group}>
-            <li className={styles.arrows_btn_group_element} onClick={() => handleMinusWeek()}>&lt;</li>
-            <li className={styles.arrows_btn_group_element} onClick={() => handlePlusWeek()}>&gt;</li>
-          </ul>
+          <div className={styles.arrows_btn_group}>
+            <div className={styles.arrows_btn_group_element} onClick={() => handleMinusWeek()}>&lt;</div>
+            <div
+              className={`${styles.arrows_btn_group_element} ${styles.today} `}
+              onClick={() => dispatch(setAсtiveDate(new Date()))}>
+              Сегодня
+            </div>
+            <div className={styles.arrows_btn_group_element} onClick={() => handlePlusWeek()}>&gt;</div>
+          </div>
         </div>
-        <div
-          className={`${styles.today} ${styles.active}`}
-          onClick={() => dispatch(setAсtiveDate(new Date()))}>
-          Сегодня
-        </div>
+
       </div>
       <div
         className={styles.active_interval}

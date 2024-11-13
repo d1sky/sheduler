@@ -31,7 +31,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    /* border-left: 1px solid #ddd; */
 }
 
 .day_number {
@@ -45,4 +44,9 @@
     height: 100%;
     font-size: 12px;
     color: #777;
+}
+
+.all_day_event_container {
+    height: 40px;
+    border-bottom: 1px solid #ddd;
 }

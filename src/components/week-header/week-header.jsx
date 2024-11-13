@@ -40,6 +40,8 @@ export const WeekHeader = () => {
             }
             )}
 
+            <div className={styles.all_day_event_container}></div>
+
         </div>
     )
 }

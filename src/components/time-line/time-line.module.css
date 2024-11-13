@@ -1,8 +1,10 @@
-.hoursContainer {
+.hours_сontainer {
     display: block;
+    /* top: 40px; */
+    position: relative;
 }
 
-.hourBlock {
+.hour_block {
     width: 100px;
     height: 80px;
 
@@ -27,6 +29,9 @@
     height: 30px;
     top: -15px;
     position: absolute;
+
+    display: flex;
+    align-items: center;
 
     color: #505050;
 }
