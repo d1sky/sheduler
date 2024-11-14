@@ -1,121 +1,20 @@
-.container_header {
+.header {
   width: 100%;
   height: 50px;
+
   padding: 0 20px;
   background-color: #ddd;
   border-bottom: 1px solid #ccc;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
-  /* position: sticky;
-  top: 0; */
 
   position: fixed;
-  top: 0
+  top: 0;
+
+  z-index: 100;
 }
 
-.interval {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  /* justify-content: space-between; */
-}
-
-.arrows {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-}
-
-.arrows ul {
-  display: flex;
-  justify-content: start;
-  padding: 0;
-
-  align-items: center;
-  margin-right: 10px;
-
-  list-style: none;
-}
-
-.arrows ul li {
-  /* padding: 0 10px; */
-  list-style-type: none;
-  border: 1px solid #bbb;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.today {
-  border: 1px solid #bbb;
-  padding: 4px 10px;
-  border-radius: 3px;
-
-  cursor: pointer;
-}
-
-.period ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-}
-
-.period ul li {
-  /* margin-left: 10px; */
-  /* margin-right: 10px; */
-  list-style-type: none;
-}
-
-.btn-group li {
-  /* Зеленый фон */
-  /* background-color: #4CAF50; */
-  /* Зеленая граница */
-  border: 1px solid #bbb;
-
-  /* padding: 20px 0; */
-
-  padding: 5px 24px;
-  /* Немного отступа */
-
-  /* Немного отступов */
-  /* padding: 15px 10px; */
-  /* Указатель/значок руки */
-  cursor: pointer;
-  /* Плавают кнопки бок о бок */
-  float: left;
-  border-radius: 3px;
-
-}
-
-.btn-group li:not(:last-child) {
-  /* Предотвращение двойных границ */
-  border-right: none;
-  border-radius: 0;
-}
-
-.btn-group li:first-child {
-  border-radius: 3px 0 0 3px;
-}
-
-.btn-group li:last-child {
-  border-radius: 0 3px 3px 0;
-}
-
-/* Очистить поплавки (clearfix) взлом */
-.btn-group:after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* Добавить цвет фона при наведении курсора */
-.btn-group li:hover {
-  background-color: #eee;
-}
-
-.active {
-  background-color: #eee;
+.content {
+  top: 90px;
 }

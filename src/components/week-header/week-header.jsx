@@ -16,31 +16,34 @@ export const WeekHeader = () => {
     const activeDate = useSelector(getActiveDate)
 
 
-
     return (
         <div className={styles.container}>
-            <div className={styles.week_number}>
-                {`${(new Date(getFirstDateOfCurrentWeek(activeDate))).getWeek()} нед.`}
+
+            <div className={styles.week_header}>
+                <div className={styles.week_number}>
+                    {`${(new Date(getFirstDateOfCurrentWeek(activeDate))).getWeek()} нед.`}
+                </div>
+
+                {[...Array(7).keys()].map(i => {
+                    let currentDate = getFirstDateOfCurrentWeek(activeDate);
+                    currentDate.setDate(currentDate.getDate() + i)
+
+                    return (
+                        <div key={i} className={styles.week_day}>
+                            <div className={styles.day_number}>
+                                {currentDate.getDate()}
+                            </div>
+                            <div className={styles.day_name}>
+                                {`${getShortDayNameOfWeek(currentDate)} `}
+                            </div>
+                        </div>
+                    )
+                }
+                )}
             </div>
 
-            {[...Array(7).keys()].map(i => {
-                let currentDate = getFirstDateOfCurrentWeek(activeDate);
-                currentDate.setDate(currentDate.getDate() + i)
-
-                return (
-                    <div key={i} className={styles.week_day}>
-                        <div className={styles.day_number}>
-                            {currentDate.getDate()}
-                        </div>
-                        <div className={styles.day_name}>
-                            {`${getShortDayNameOfWeek(currentDate)} `}
-                        </div>
-                    </div>
-                )
-            }
-            )}
-
-            <div className={styles.all_day_event_container}></div>
+            <div className={styles.all_day_event}>
+            </div>
 
         </div>
     )
